@@ -1,0 +1,52 @@
+<html>
+<body>
+<p><strong>STView</strong> is a QML element which provides a stack-based navigation model with different animation effects between two views.</p>
+
+<p>Import Statement: <em>import ShaderTransitionView 1.0</em></p>
+
+<p>Properties:</p>
+
+<ul>
+<li>
+<em>int</em> <strong>duration</strong> - the property defines how long the animation lasts (milliseconds).</li>
+<li>
+<em>int</em> <strong>depth</strong> - the property defines the number of items currently pushed onto the stack.</li>
+<li>
+<em>string</em> <strong>currentItem</strong> - the property defines the current QML file. If the current view is a QML component it returns a string <em>ShaderTranstionView::component:N</em> where <em>N</em> is a number of a QML component in the stack.</li>
+<li>
+<em>Array</em> <strong>transitionOptions</strong> - a javascript array to set options for the current transition.</li>
+<li>
+<em>enum</em> <strong>transition</strong> - the property defines which shader effect will be applied for the next transition.</li>
+<li>
+<em>real</em> <strong>progress</strong> - it shows the progress of animation. The value changes from 0.0 to 1.0.</li>
+<li>
+<em>alias</em> <strong>easing</strong> - it specifies the easing curve used for the animation.</li>
+</ul>
+
+<p>Methods:</p>
+
+<ul>
+<li>
+<em>void</em> <strong>push(</strong> <em>string</em> qmlfile <strong>)</strong> - it takes a path to a QML file as an argument which represents the next QML view and puts it into the stack. An animation will be applied to change the current view.</li>
+<li>
+<em>void</em> <strong>pushItem(</strong> <em>QQmlComponent</em> item <strong>)</strong> - it puts the next view represented as a QML component into the stack. An animation will be applied to change the current view.</li>
+<li>
+<em>void</em> <strong>pop()</strong> - it removes the last view from the stack. An animation will be applied to change the current view.</li>
+<li>
+<em>void</em> <strong>clear()</strong> - it removes all views from the stack.</li>
+<li>
+<em>void</em> <strong>completeTransition()</strong> - It immediately completes any transition.</li>
+<li>
+<em>TYPE</em> <strong>top()</strong> - it returns the stack's top item. If the top element is a path than <em>TYPE</em> is a string, otherwise it is <em>QQmlComponent</em>.</li>
+</ul>
+
+<p>Signals:</p>
+
+<ul>
+<li>
+<strong>animationStarted()</strong> - this signal is emitted when the animation starts.</li>
+<li>
+<strong>animationCompleted()</strong> - this signal is emitted when the animation finishes.</li>
+
+</body>
+</html>
