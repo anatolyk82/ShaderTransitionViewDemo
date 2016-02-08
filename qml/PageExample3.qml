@@ -103,7 +103,6 @@ MyPage {
                     anchors.fill: parent
                     onClicked: {
                         listView.currentIndex = index
-                        //ListView.currentIndex = index
                         txtDescription.text = description
                     }
                 }
@@ -129,7 +128,6 @@ MyPage {
             anchors.right: parent.right
             width: parent.width
             wrapMode: Text.WordWrap
-            //color: "blue"
         }
 
         Button {

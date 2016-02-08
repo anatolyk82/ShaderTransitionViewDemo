@@ -4,7 +4,6 @@ import QtLocation 5.3
 
 MyPage {
     id: root
-    //anchors.fill: parent
 
     Image {
         id: background
@@ -37,7 +36,6 @@ MyPage {
                 latitude: 47.288471790172444
                 longitude: 39.715083257720266
             }
-            //onCenterChanged: console.log( worldMap.center.latitude + "|" + worldMap.center.longitude  )
 
             zoomLevel: (maximumZoomLevel-minimumZoomLevel)/1.1
         }

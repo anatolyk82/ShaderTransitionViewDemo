@@ -60,18 +60,26 @@ MyPage {
         }
     }
 
+    AnimatedImage {
+        id: indicatorLoading
+        width: 64
+        height: 64
+        visible: false
+        anchors.centerIn: parent
+        source: "qrc:/qml/BusyIndicator.gif"
+    }
 
     Component.onCompleted: {
         var request = new XMLHttpRequest()
-        request.open('GET', "https://github.com/anatolyk82/ShaderTransitionViewDemo/blob/master/qml/page.html" )
+        request.open('GET', "https://raw.githubusercontent.com/anatolyk82/ShaderTransitionViewDemo/master/qml/page.html" )
         request.onreadystatechange = function(event) {
             if (request.readyState == XMLHttpRequest.DONE) {
                 edit.text = request.responseText
             }
-            //indicatorLoadingChangeLog.visible = false
+            indicatorLoading.visible = false
         }
         request.send()
-        //indicatorLoadingChangeLog.visible = true
+        indicatorLoading.visible = true
     }
 
 }
