@@ -13,6 +13,16 @@ MyPage {
 
     property int errorCount: 0
 
+    AnimatedImage {
+        id: indicatorLoading
+        z: 1
+        width: 64
+        height: 64
+        visible: false
+        anchors.centerIn: parent
+        source: "qrc:/qml/BusyIndicator.gif"
+    }
+
     XmlListModel {
         id: newsModel
         source: "http://news.yahoo.com/rss/topstories"
@@ -27,13 +37,9 @@ MyPage {
         XmlRole { name: "pubDate"; query: "pubDate/string()" }
         onStatusChanged:  {
             if( status == XmlListModel.Ready ) {
-                console.log(count)
+                indicatorLoading.visible = false
                 if( count > 0 ) {
                     txtDescription.text = newsModel.get(0).description
-                } else if(newsModel == 3) {
-                    console.log("errorCount="+errorCount)
-                    newsModel.reload()
-                    errorCount += 1
                 }
             } else if ( status == XmlListModel.Null ) {
                 if(newsModel == 3) {
@@ -42,9 +48,15 @@ MyPage {
                     errorCount += 1
                 }
             } else if ( status == XmlListModel.Loading ) {
+                indicatorLoading.visible = true
             } else if ( status == XmlListModel.Error ) {
-                console.log(count)
+                console.log("Error to load XML")
                 errorString()
+                errorCount += 1
+                if( errorCount < 4 ) {
+                    reload()
+                }
+                indicatorLoading.visible = false
             }
         }
     }
@@ -141,6 +153,10 @@ MyPage {
                 stView.pop()
             }
         }
+    }
+
+    Component.onCompleted: {
+        newsModel.reload()
     }
 
 }

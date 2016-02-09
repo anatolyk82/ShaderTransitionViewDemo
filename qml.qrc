@@ -11,5 +11,6 @@
         <file>qml/background2.jpg</file>
         <file>qml/background1.jpg</file>
         <file>qml/BusyIndicator.gif</file>
+        <file>qml/ScrollBar.qml</file>
     </qresource>
 </RCC>

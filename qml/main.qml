@@ -68,7 +68,7 @@ Window {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        width: 200
+        width: 220
         color: "transparent"
 
         ListView {
@@ -80,7 +80,7 @@ Window {
             focus: true
             delegate: Rectangle {
                 id: delegateWrapper
-                width: parent.width
+                width: parent.width*0.94
                 height: 60
                 color: "transparent"
                 border.color: delegateWrapper.ListView.isCurrentItem ? "white" : "lightgrey"
@@ -135,6 +135,9 @@ Window {
                     }
                 }
             }
+        }
+        ScrollBar {
+            flickable: listView
         }
     }
 
