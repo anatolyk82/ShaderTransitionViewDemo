@@ -11,8 +11,6 @@ MyPage {
         source: "qrc:/qml/background3.jpg"
     }
 
-    property int errorCount: 0
-
     AnimatedImage {
         id: indicatorLoading
         z: 1
@@ -25,16 +23,13 @@ MyPage {
 
     XmlListModel {
         id: newsModel
-        source: "http://news.yahoo.com/rss/topstories"
-        query: "/rss/channel/item[child::media:content]"
+        source: "http://www.cnet.com/rss/news/"
+        query: "/rss/channel/item"
         namespaceDeclarations: "declare namespace media = 'http://search.yahoo.com/mrss/';"
 
         XmlRole { name: "title"; query: "title/string()" }
-        // Remove any links from the description
         XmlRole { name: "description"; query: "fn:replace(description/string(), '\&lt;a href=.*\/a\&gt;', '')" }
-        XmlRole { name: "image"; query: "media:content/@url/string()" }
-        XmlRole { name: "link"; query: "link/string()" }
-        XmlRole { name: "pubDate"; query: "pubDate/string()" }
+        XmlRole { name: "image"; query: "media:thumbnail/@url/string()" }
         onStatusChanged:  {
             if( status == XmlListModel.Ready ) {
                 indicatorLoading.visible = false
@@ -42,20 +37,11 @@ MyPage {
                     txtDescription.text = newsModel.get(0).description
                 }
             } else if ( status == XmlListModel.Null ) {
-                if(newsModel == 3) {
-                    console.log("Null::errorCount="+errorCount)
-                    newsModel.reload()
-                    errorCount += 1
-                }
+                console.log("Null::errorCount="+errorCount)
             } else if ( status == XmlListModel.Loading ) {
                 indicatorLoading.visible = true
             } else if ( status == XmlListModel.Error ) {
                 console.log("Error to load XML")
-                errorString()
-                errorCount += 1
-                if( errorCount < 4 ) {
-                    reload()
-                }
                 indicatorLoading.visible = false
             }
         }
@@ -155,8 +141,5 @@ MyPage {
         }
     }
 
-    Component.onCompleted: {
-        newsModel.reload()
-    }
 
 }
