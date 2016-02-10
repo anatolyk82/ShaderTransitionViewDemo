@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.XmlListModel 2.0
 
+//http://www.cnet.com/rss/
 
 MyPage {
     id: root
