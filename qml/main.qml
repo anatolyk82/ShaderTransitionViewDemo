@@ -35,6 +35,9 @@ Window {
         ListElement { effect: "VerticalSlide" }
         ListElement { effect: "CrossZoom" }
         ListElement { effect: "Swirl" }
+        ListElement { effect: "LinearBlur" }
+        ListElement { effect: "Swap" }
+        ListElement { effect: "CrossHatch" }
     }
 
     Rectangle {
@@ -131,7 +134,14 @@ Window {
                             stView.transition = ShaderTransitionView.EffectSWIRL
                         } else if( effect == "Pixelize" ) {
                             stView.transition = ShaderTransitionView.EffectPIXELIZE
+                        } else if( effect == "LinearBlur" ) {
+                            stView.transition = ShaderTransitionView.EffectLINEARBLUR
+                        } else if( effect == "Swap" ) {
+                            stView.transition = ShaderTransitionView.EffectSWAP
+                        } else if( effect == "CrossHatch" ) {
+                            stView.transition = ShaderTransitionView.EffectCROSSHATCH
                         }
+
                     }
                 }
             }
